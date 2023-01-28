@@ -11,7 +11,7 @@ This simple action uses the [vanilla AWS CLI](https://docs.aws.amazon.com/cli/in
 Place in a `.yml` file such as this one in your `.github/workflows` folder. [Refer to the documentation on workflow YAML syntax here.](https://help.github.com/en/articles/workflow-syntax-for-github-actions)
 
 ```
-name: Sync Bucket
+name: Upload binary
 on: push
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
    - uses: actions/checkout@master
    
    - name: Upload binary to S3 bucket
-   uses: tpaschalis/s3-sync-action@master
+   uses: tpaschalis/s3-cp-action@master
    with:
      args: --acl public-read
    env:
@@ -48,7 +48,7 @@ The following variables should be added as "secrets" in the action's configurati
 
 | Key | Value | Type | Required |
 | ------------- | ------------- | ------------- | ------------- |
-| `AWS_S3_BUCKET` | The name of the bucket you're syncing to. For example, `golang-deployment-bucket`. | `secret` | **Yes** |
+| `AWS_S3_BUCKET` | The name of the bucket you're copying to. For example, `golang-deployment-bucket`. | `secret` | **Yes** |
 | `AWS_ACCESS_KEY_ID` | Your AWS Access Key. [More info here.](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) | `secret` | **Yes** |
 | `AWS_SECRET_ACCESS_KEY` | Your AWS Secret Access Key. [More info here.](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) | `secret` | **Yes** |
 
